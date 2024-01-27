@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+
+    id 'application'
+
+    id 'jacoco'
+
+    id 'com.github.sherter.google-java-format' version '0.8'
+
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    // Use JUnit Jupiter Engine for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
+    // Allow for JUnit 4 legacy
+    testCompileOnly 'junit:junit:4.12'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.5.1'
+    compile "com.jfoenix:jfoenix:9.0.8"
+    implementation "org.openjfx:javafx-base:11:win"
+    implementation "org.openjfx:javafx-graphics:11:win"
+    implementation "org.openjfx:javafx-controls:11:win"
+    implementation "org.openjfx:javafx-fxml:11:win"
+    implementation "org.openjfx:javafx-base:11:linux"
+    implementation "org.openjfx:javafx-graphics:11:linux"
+    implementation "org.openjfx:javafx-controls:11:linux"
+    implementation "org.openjfx:javafx-fxml:11:linux"
+    implementation "org.openjfx:javafx-base:11:mac"
+    implementation "org.openjfx:javafx-graphics:11:mac"
+    implementation "org.openjfx:javafx-controls:11:mac"
+    implementation "org.openjfx:javafx-fxml:11:mac"
+
+}
+
+application {
+    mainClassName = 'danmarksKort.Main'
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': application.mainClassName
+    }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id="BFST20" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="GRADLE" type="JAVA_MODULE" version="4">
+  <component name="EclipseModuleManager">
+    <conelement value="org.eclipse.buildship.core.gradleclasspathcontainer" />
+    <src_description expected_position="0">
+      <src_folder value="file://$MODULE_DIR$/src/main/java" expected_position="0" />
+      <src_folder value="file://$MODULE_DIR$/src/test/java" expected_position="1" />
+    </src_description>
+  </component>
+  <component name="NewModuleRootManager">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.gradle" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-fxml:12.0.1:mac" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:12.0.1:mac" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:12.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:12.0.1:mac" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:12.0.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:12.0.1:mac" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:12.0.1" level="project" />
+  </component>
+</module>

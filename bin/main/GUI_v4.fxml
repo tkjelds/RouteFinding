@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import danmarksKort.NavigationTextField?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="https://www.itu.dk/" fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="633.0" prefWidth="772.0"
+            stylesheets="@style.css" fx:controller="danmarksKort.ViewController">
+    <children>
+        <Canvas fx:id="canvas" height="633.0" onMouseDragged="#canvasMouseDragged" onMousePressed="#canvasMousePressed"
+                onScroll="#canvasScroll" onMouseMoved="#canvasMouseMoved" width="772.0"/>
+        <AnchorPane layoutX="14.0" layoutY="33.0" maxHeight="-Infinity" prefHeight="568.0" prefWidth="239.0"
+                    style="-fx-background-radius: 10px;" styleClass="BorderForGps" AnchorPane.bottomAnchor="32.0"
+                    AnchorPane.topAnchor="33.0">
+            <children>
+                <Label layoutX="-2.0" layoutY="2.0" prefHeight="25.0" prefWidth="243.0" style="-fx-alignment: Center;"
+                       text="Søg i Maps" textAlignment="CENTER">
+                    <font>
+                        <Font name="Geeza Pro Regular" size="17.0"/>
+                    </font>
+                </Label>
+                <HBox layoutX="14.0" layoutY="115.0" prefHeight="43.0" prefWidth="212.0" style="-fx-alignment: center;">
+                    <children>
+                        <Button fx:id="cycleBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="50.0"
+                                onAction="#setCyclingRouting" styleClass="Btn">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@cyclist.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="carBtn" mnemonicParsing="false" prefHeight="42.0" prefWidth="50.0"
+                                onAction="#setDrivingRouting" styleClass="Btn">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@/car.png"/>
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <HBox.margin>
+                                <Insets right="10.0"/>
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <padding>
+                        <Insets left="4.0"/>
+                    </padding>
+                </HBox>
+                <NavigationTextField fx:id="toDestination" layoutX="16.0" layoutY="75.0" onAction="#calcWay"
+                                     prefHeight="31.0" prefWidth="178.0" promptText="Til"
+                                     style="-fx-border-color: black; -fx-border-radius: 5px;"
+                                     styleClass="BorderForGps"/>
+                <NavigationTextField fx:id="fromDestination" onAction="#calcWay" layoutX="16.0" layoutY="37.0"
+                                     prefHeight="31.0" prefWidth="212.0" promptText="Fra"
+                                     style="-fx-border-color: black; -fx-border-radius: 5px;"/>
+                <VBox layoutY="167.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                      prefHeight="377.0" prefWidth="243.0"
+                      style="-fx-background-color: transparent; -fx-border-radius: 10px;" AnchorPane.leftAnchor="1.0"
+                      AnchorPane.bottomAnchor="24.0" AnchorPane.topAnchor="167.0">
+                    <children>
+                        <Label prefHeight="22.0" prefWidth="213.0" style="-fx-alignment: Center;" text="Rutevejledning"
+                               textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets/>
+                            </VBox.margin>
+                            <font>
+                                <Font size="17.0"/>
+                            </font>
+                        </Label>
+                        <ScrollPane hbarPolicy="NEVER" prefHeight="355.0" prefWidth="206.0" VBox.vgrow="ALWAYS"
+                                    style="-fx-background-color: transparent">
+                            <content>
+                                <VBox prefHeight="346.0" prefWidth="203.0">
+                                    <children>
+                                        <Label prefHeight="0.0" prefWidth="0.0"/>
+                                        <VBox fx:id="navigatonVbox" fillWidth="false" maxHeight="1.7976931348623157E308"
+                                              maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                              prefWidth="203.0" spacing="10.0">
+                                            <padding>
+                                                <Insets top="2.0"/>
+                                            </padding>
+                                        </VBox>
+                                    </children>
+                                </VBox>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                    <padding>
+                        <Insets left="15.0"/>
+                    </padding>
+                </VBox>
+                <Button layoutX="192.0" layoutY="75.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="34.0"
+                        onAction="#calcWay" styleClass="SearchButton">
+                    <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/Lup.png"/>
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Separator fx:id="seperator" layoutX="189.0" layoutY="76.0" orientation="VERTICAL" prefHeight="29.0"
+                           prefWidth="8.0" styleClass="separator"/>
+                <Separator fx:id="seperator2" layoutX="190.0" layoutY="81.0" orientation="VERTICAL" prefHeight="20.0"
+                           prefWidth="6.0" styleClass="Seperator2"/>
+            </children>
+        </AnchorPane>
+        <MenuBar layoutX="14.0" layoutY="1.0" style="-fx-background-color: transparent;">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem fx:id="loadBtn" mnemonicParsing="false" onAction="#load" text="Load"/>
+                        <MenuItem fx:id="saveBtn" mnemonicParsing="false" onAction="#save" text="save"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem fx:id="defaultbtn" mnemonicParsing="false" onAction="#ColorBlindMode"
+                                  text="Normale farver"/>
+                        <MenuItem fx:id="redBtn" mnemonicParsing="false" onAction="#ColorBlindMode"
+                                  text="Rød/grøn-farveblindhed"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <VBox layoutX="265" layoutY="74.0" prefHeight="54.0" prefWidth="32.0">
+            <children>
+                <Button fx:id="IndBtn" mnemonicParsing="false" onMouseClicked="#ZoomIn" prefHeight="27.0"
+                        prefWidth="35.0" styleClass="Btn" text="+"/>
+                <Button fx:id="UdBtn" mnemonicParsing="false" onMouseClicked="#ZoomOut" prefHeight="83.0"
+                        prefWidth="140.0" styleClass="Btn" text="-"/>
+            </children>
+        </VBox>
+        <HBox layoutX="697.0" layoutY="37.0" prefHeight="22.0" prefWidth="68.0" styleClass="BordersForCounters"
+              AnchorPane.rightAnchor="7.0" AnchorPane.topAnchor="37.0">
+            <children>
+                <Label text="FPS" underline="true">
+                    <padding>
+                        <Insets left="7.0" top="2.0"/>
+                    </padding>
+                </Label>
+                <Label fx:id="FpsCounterLabel" prefHeight="19.0" prefWidth="34.0" text="   ">
+                    <padding>
+                        <Insets left="8.0" top="2.0"/>
+                    </padding>
+                </Label>
+            </children>
+        </HBox>
+        <HBox layoutX="540.0" layoutY="579.0" prefHeight="22.0" prefWidth="225.0" styleClass="BordersForCounters"
+              AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="7.0">
+            <children>
+                <Label text="Adresse" underline="true">
+                    <padding>
+                        <Insets left="7.0" top="2.0"/>
+                    </padding>
+                </Label>
+                <Label fx:id="AddressLabel" prefHeight="19.0" prefWidth="165.0" style="-fx-alignment: Center;">
+                    <padding>
+                        <Insets left="7.0" top="2.0"/>
+                    </padding>
+                </Label>
+            </children>
+        </HBox>
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="462.0" layoutY="112.0" pickOnBounds="true"
+                   preserveRatio="true"/>
+        <VBox layoutX="315.0" layoutY="112.0" prefHeight="23.0" prefWidth="44.0"/>
+        <HBox layoutX="265.0" layoutY="37.0" prefHeight="23.0" prefWidth="99.0" styleClass="BordersForCounters">
+            <children>
+                <Label prefHeight="19.0" prefWidth="49.0" text="Zoom" underline="true">
+                    <padding>
+                        <Insets left="7.0" top="2.0"/>
+                    </padding>
+                </Label>
+                <Label fx:id="zoomLevelLabel" prefHeight="19.0" prefWidth="45.0" text="100%">
+                    <padding>
+                        <Insets left="7.0" top="2.0"/>
+                    </padding>
+                </Label>
+            </children>
+        </HBox>
+    </children>
+</AnchorPane>
